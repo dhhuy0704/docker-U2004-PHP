@@ -76,9 +76,6 @@ COPY SupportFiles/HOW_TO_SETUP_DOMAIN.txt /
 RUN cp /HOW_TO_SETUP_DOMAIN.txt /var/www
 
 ADD SupportFiles/create-site.sh /
-RUN cp /create-site.sh /var/www
-RUN sudo chmod 755 /var/www/create-site.sh
-
 ADD SupportFiles/html /html
 
 # Start up services when run container

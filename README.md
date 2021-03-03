@@ -39,6 +39,12 @@ $ docker run \
 <imageID>
 ```
 
+### Initial start
+Apply my alias commands
+```
+$ source ~/.bash_profile
+```
+
 ### Add new site:
 ```
 $ addsite
