@@ -5,6 +5,7 @@ alias ll="ls -la"
 alias lash="ls -lash"
 alias cdvhost="cd /etc/apache2/sites-available/" \n
 alias cdwww="cd /var/www" \n
+alias addsite="/var/www/create-site.sh" \n
 \n
 alias startApache="service apache2 start" \n
 alias stopApache="service apache2 stop" \n
@@ -32,5 +33,7 @@ sudo cp -r /html /var/www
 
 service apache2 start
 /opt/mongodb/4.4.3/bin/mongod --config /opt/mongodb/4.4.3/mongod-4.4.3.conf --dbpath ~/database/mongodb/4.4.3
+service php7.2-fpm start
+service php8.0-fpm start
 
 /bin/bash

@@ -38,3 +38,10 @@ $ docker run \
 --name AnvyDevServer \
 <imageID>
 ```
+
+### Add new site:
+```
+$ addsite
+or
+$ /var/www/create-site.sh
+```
