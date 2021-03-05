@@ -15,14 +15,12 @@ then
   exit 1
 fi
 
-echo "Configurate: $sitename..."
+echo "Configure: $sitename..."
 
 echo "Creating $sitename directory"
-if [ -d "/var/www/$sitename" ]; then
-  echo "Directory $sitename existed"
-  exit 1
+if [ ! -d "/var/www/$sitename" ]; then
+  sudo mkdir /var/www/$sitename
 fi
-sudo mkdir /var/www/$sitename
 
 echo "Set permission..."
 sudo chown -R $USER:$USER /var/www/$sitename
@@ -37,16 +35,17 @@ echo '
     ServerAdmin admin@'$sitename'
     ServerName '$sitename'
     ServerAlias www.'$sitename'
+    DirectoryIndex index.php
     DocumentRoot /var/www/'$sitename'
-    	<Directory /var/www/'$sitename'>
-	        Options Indexes FollowSymLinks MultiViews
-	        AllowOverride All
-	        Order allow,deny
-	        allow from all
-	    </Directory>
-	    <FilesMatch \.php$>
-        	SetHandler "proxy:unix:/run/php/php'$phpver'-fpm.sock|fcgi://localhost"
-	    </FilesMatch>
+        <Directory /var/www/'$sitename'>
+            Options Indexes FollowSymLinks MultiViews
+            AllowOverride All
+            Order allow,deny
+            allow from all
+        </Directory>
+        <FilesMatch \.php$>
+            SetHandler "proxy:unix:/run/php/php'$phpver'-fpm.sock|fcgi://localhost"
+        </FilesMatch>
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
@@ -55,9 +54,9 @@ echo '
 echo "Check ${sitename}.conf file..."
 if sudo apache2ctl configtest
 then
-	sudo a2ensite $sitename.conf
+    sudo a2ensite $sitename.conf
 else
-	sudo apache2ctl configtest
+    sudo apache2ctl configtest
 fi
 
 service apache2 reload

@@ -31,7 +31,9 @@ mkdir -p ~/database/mongodb/4.4.3
 mkdir -p /var/log/mongodb/ && sudo chmod -R 777 /var/log/mongodb
 sudo cp -r /html /var/www
 cp /create-site.sh /var/www
+cp /config-ssl.sh /var/www
 sudo chmod 755 /var/www/create-site.sh
+sudo chmod 755 /var/www/config-ssl.sh
 
 service apache2 start
 /opt/mongodb/4.4.3/bin/mongod --config /opt/mongodb/4.4.3/mongod-4.4.3.conf --dbpath ~/database/mongodb/4.4.3

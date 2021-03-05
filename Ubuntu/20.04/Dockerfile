@@ -38,7 +38,7 @@ EXPOSE 27018/tcp
 
 # Install needed packages
 RUN apt-get update && apt-get -y install sudo
-RUN apt -y install nano vim wget git unzip net-tools ufw curl
+RUN apt -y install nano vim wget git unzip net-tools ufw curl iputils-ping
 
 # Install with skipping prompt input
 RUN DEBIAN_FRONTEND='noninteractive' apt -y install php-pear
@@ -48,6 +48,8 @@ RUN DEBIAN_FRONTEND='noninteractive' apt -y install php-pear
 RUN sudo apt install -y apache2
 RUN sudo ufw allow 'Apache'
 RUN echo 'ServerName localhost' >> /etc/apache2/apache2.conf
+RUN sudo a2enmod rewrite
+RUN sudo a2enmod ssl
 
 # Install multi PHP version
 # https://www.digitalocean.com/community/tutorials/how-to-run-multiple-php-versions-on-one-server-using-apache-and-php-fpm-on-ubuntu-20-04
@@ -76,6 +78,7 @@ COPY SupportFiles/HOW_TO_SETUP_DOMAIN.txt /
 RUN cp /HOW_TO_SETUP_DOMAIN.txt /var/www
 
 ADD SupportFiles/create-site.sh /
+ADD SupportFiles/config-ssl.sh /
 ADD SupportFiles/html /html
 
 # Start up services when run container
