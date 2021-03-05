@@ -39,6 +39,7 @@ EXPOSE 27018/tcp
 # Install needed packages
 RUN apt-get update && apt-get -y install sudo
 RUN apt -y install nano vim wget git unzip net-tools ufw curl iputils-ping
+RUN apt -y install build-essential chrpath libssl-dev libxft-dev
 
 # Install with skipping prompt input
 RUN DEBIAN_FRONTEND='noninteractive' apt -y install php-pear
@@ -76,6 +77,9 @@ RUN export PATH=/opt/mongodb/4.4.3/bin:$PATH
 
 COPY SupportFiles/HOW_TO_SETUP_DOMAIN.txt /
 RUN cp /HOW_TO_SETUP_DOMAIN.txt /var/www
+
+RUN curl -O https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
+RUN sudo tar -zxvf phantomjs-2.1.1-linux-x86_64.tar.bz2
 
 ADD SupportFiles/create-site.sh /
 ADD SupportFiles/config-ssl.sh /

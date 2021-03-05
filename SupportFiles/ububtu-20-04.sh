@@ -6,6 +6,7 @@ alias lash="ls -lash"
 alias cdvhost="cd /etc/apache2/sites-available/" \n
 alias cdwww="cd /var/www" \n
 alias addsite="/var/www/create-site.sh" \n
+alias configssl="/var/www/config-ssl.sh" \n
 \n
 alias startApache="service apache2 start" \n
 alias stopApache="service apache2 stop" \n
@@ -34,6 +35,9 @@ cp /create-site.sh /var/www
 cp /config-ssl.sh /var/www
 sudo chmod 755 /var/www/create-site.sh
 sudo chmod 755 /var/www/config-ssl.sh
+
+sudo mv phantomjs-2.1.1-linux-x86_64 /usr/local/share/
+sudo ln -sf /usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin
 
 service apache2 start
 /opt/mongodb/4.4.3/bin/mongod --config /opt/mongodb/4.4.3/mongod-4.4.3.conf --dbpath ~/database/mongodb/4.4.3

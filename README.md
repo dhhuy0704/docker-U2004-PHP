@@ -49,5 +49,12 @@ $ source ~/.bash_profile
 ```
 $ addsite
 or
-$ /var/www/create-site.sh
+$ ./var/www/create-site.sh
+```
+
+### Config SSL:
+```
+$ configssl
+or
+$ ./var/www/config-ssl.sh
 ```
