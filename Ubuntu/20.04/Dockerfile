@@ -10,7 +10,6 @@ LABEL description="Environment for all Anvy Digital projects"
 #########################
 
 # SET ENV VAR 
-# Aug 2020: PHP 5.6.40-1 is compatible for JobTraq
 ENV PROJECT_NAME AnvyDevEnv
 ENV MONGODB_VER 4.4.3
 
