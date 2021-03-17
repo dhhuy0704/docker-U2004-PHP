@@ -3,28 +3,30 @@
 ##
 # Add alias for better command line
 ##
-echo $'\n
+echo $'
 alias ll="ls -la"
 alias lash="ls -lash"
-alias cdvhost="cd /etc/apache2/sites-available/" \n
-alias cdwww="cd /var/www" \n
-alias addsite="/var/www/create-site.sh" \n
-alias configssl="/var/www/config-ssl.sh" \n
-\n
-alias startApache="service apache2 start" \n
-alias stopApache="service apache2 stop" \n
-alias statusApache="service apache2 status" \n
-alias restartApache="service apache2 restart" \n
-\n
-alias startMongo="/opt/mongodb/4.4.3/bin/mongod --config /opt/mongodb/4.4.3/mongod-4.4.3.conf --dbpath ~/database/mongodb/4.4.3" \n
-alias stopMongo="/opt/mongodb/4.4.3/bin/mongod --config /opt/mongodb/4.4.3/mongod-4.4.3.conf --dbpath ~/database/mongodb/4.4.3 --shutdown" \n
-alias nanoMongo="nano /opt/mongodb/4.4.3/mongod-4.4.3.conf" \n
-\n
-alias nanoHost="nano /etc/hosts" \n
-alias pecl="php -f /usr/bin/pecl" \n
-\n
-alias tailLog="tail -f /var/log/apache2/access.log" \n
-alias tailAccess="tail -f /var/log/apache2/error.log" \n
+alias cdvhost="cd /etc/apache2/sites-available/" 
+alias cdwww="cd /var/www" 
+alias addsite="/var/www/create-site.sh" 
+alias configssl="/var/www/config-ssl.sh" 
+
+alias startApache="service apache2 start" 
+alias stopApache="service apache2 stop" 
+alias statusApache="service apache2 status" 
+alias restartApache="service apache2 restart" 
+
+alias startMongo="/opt/mongodb/4.4.3/bin/mongod --config /opt/mongodb/4.4.3/mongod-4.4.3.conf --dbpath ~/database/mongodb/4.4.3" 
+alias stopMongo="/opt/mongodb/4.4.3/bin/mongod --config /opt/mongodb/4.4.3/mongod-4.4.3.conf --dbpath ~/database/mongodb/4.4.3 --shutdown"
+alias mongorestore="/opt/mongodb/4.4.3/bin/mongorestore"
+alias mongodump="/opt/mongodb/4.4.3/bin/mongodump"
+alias nanoMongo="nano /opt/mongodb/4.4.3/mongod-4.4.3.conf" 
+
+alias nanoHost="nano /etc/hosts" 
+alias pecl="php -f /usr/bin/pecl" 
+
+alias tailLog="tail -f /var/log/apache2/access.log" 
+alias tailAccess="tail -f /var/log/apache2/error.log" 
 ' >> ~/.bash_profile
 
 ###
@@ -35,6 +37,7 @@ export PATH="/opt/mongodb/4.4.3/bin:$PATH"
 # Add create mongo data directory and log file
 mkdir -p ~/database/mongodb/4.4.3
 mkdir -p /var/log/mongodb/ && sudo chmod -R 777 /var/log/mongodb
+cp -R mongodb-database-tools-ubuntu2004-x86_64-100.3.0.tgz/bin/* /opt/mongodb/4.4.3/bin
 
 # Copy sample file to Apache default config
 sudo cp -r /html /var/www

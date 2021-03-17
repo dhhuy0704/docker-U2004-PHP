@@ -38,7 +38,7 @@ EXPOSE 27018/tcp
 # Install needed packages
 RUN apt-get update && apt-get -y install sudo
 RUN apt -y install nano vim wget git unzip net-tools ufw curl iputils-ping
-RUN apt -y install build-essential chrpath libssl-dev libxft-dev
+RUN DEBIAN_FRONTEND='noninteractive' apt -y install build-essential chrpath libssl-dev libxft-dev
 
 # Install with skipping prompt input
 RUN DEBIAN_FRONTEND='noninteractive' apt -y install php-pear
@@ -58,7 +58,7 @@ RUN sudo add-apt-repository ppa:ondrej/php
 RUN sudo apt-get update -y
 
 RUN sudo apt-get install -y libapache2-mod-fcgid
-RUN sudo apt-get install php7.2 php7.2-fpm libapache2-mod-php7.2 php7.2-mongodb -y
+RUN sudo apt-get install php7.2 php7.2-fpm libapache2-mod-php7.2 php7.2-mongodb php7.2-xml -y
 RUN sudo apt-get install php8.0 php8.0-fpm libapache2-mod-php8.0 php8.0-mongodb -y
 
 RUN sudo a2enmod actions fcgid alias proxy_fcgi
@@ -70,6 +70,9 @@ RUN tar -zxvf mongodb-linux-x86_64-ubuntu2004-4.4.3.tgz
 RUN mv mongodb-linux-x86_64-ubuntu2004-4.4.3 4.4.3
 RUN mkdir -p /opt/mongodb
 RUN cp -r /4.4.3 /opt/mongodb
+
+RUN curl -O https://fastdl.mongodb.org/tools/db/mongodb-database-tools-ubuntu2004-x86_64-100.3.0.tgz
+RUN tar -zxvf mongodb-database-tools-ubuntu2004-x86_64-100.3.0.tgz
 
 RUN cp /mongod-4.4.3.conf /opt/mongodb/4.4.3
 RUN export PATH=/opt/mongodb/4.4.3/bin:$PATH
