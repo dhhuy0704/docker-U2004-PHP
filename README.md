@@ -20,7 +20,7 @@ docker pull anvydigital/anvydevenv
 ### On Window
 ```
 $ docker images
-$ docker run -it --privileged -p "80:80" -p "25:25" -p "27017:27017" -p "443:443" -v C:\www:/var/www:consistent -v C:\www\database:/root/database/:consistent --name AnvyDevServer <imageID>
+$ docker run -it --privileged -p "80:80" -p "25:25" -p "27017:27017" -p "27018:27018" -p "443:443" -v C:\www:/var/www:consistent -v C:\www\database:/root/database/:consistent --name AnvyDevServer <imageID>
 ```
 
 ### On Linux or MacOS

@@ -58,7 +58,7 @@ RUN sudo add-apt-repository ppa:ondrej/php
 RUN sudo apt-get update -y
 
 RUN sudo apt-get install -y libapache2-mod-fcgid
-RUN sudo apt-get install php7.2 php7.2-fpm libapache2-mod-php7.2 php7.2-mongodb php7.2-xml -y
+RUN sudo apt-get install php7.2 php7.2-fpm libapache2-mod-php7.2 php7.2-mongodb php7.2-xml php7.2-curl -y
 RUN sudo apt-get install php8.0 php8.0-fpm libapache2-mod-php8.0 php8.0-mongodb -y
 
 RUN sudo a2enmod actions fcgid alias proxy_fcgi
@@ -86,6 +86,10 @@ RUN sudo tar -zxvf phantomjs-2.1.1-linux-x86_64.tar.bz2
 ADD SupportFiles/create-site.sh /
 ADD SupportFiles/config-ssl.sh /
 ADD SupportFiles/html /html
+
+# Trick to fix error cannot set permission
+RUN usermod -u 1000 www-data
+RUN usermod -G staff www-data
 
 # Start up services when run container
 COPY SupportFiles/ububtu-20-04.sh /
